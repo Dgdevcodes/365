@@ -4185,6 +4185,7 @@ let soundEnabled = false;
 let pushEnabled = false;
 let lastOverbreakNames = new Set();
 let audioCtx = null;
+let _overbreakSoundTimer = null; // repeating beep every 60s while overbreak active
 
 function getAudioCtx() {
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -4256,7 +4257,6 @@ function togglePush() {
 }
 
 function triggerOverbreakAlerts(names) {
-  const nameSet = new Set(names);
   const newOB = names.filter(n => !lastOverbreakNames.has(n));
   if (!newOB.length) return;
   newOB.forEach(n => lastOverbreakNames.add(n));
@@ -4265,8 +4265,16 @@ function triggerOverbreakAlerts(names) {
   const page = document.getElementById('page-breaklogs');
   if (page) { page.classList.remove('page-flash'); void page.offsetWidth; page.classList.add('page-flash'); }
 
-  // Sound
+  // Sound — ring immediately for new overbreak
   if (soundEnabled) playOverbreakBeep();
+
+  // Start repeating beep every 3s while anyone is still overbreaking
+  if (soundEnabled && !_overbreakSoundTimer) {
+    _overbreakSoundTimer = setInterval(function() {
+      if (soundEnabled && lastOverbreakNames.size > 0) playOverbreakBeep();
+      else { clearInterval(_overbreakSoundTimer); _overbreakSoundTimer = null; }
+    }, 3000);
+  }
 
   // Push notification
   if (pushEnabled && Notification.permission === 'granted') {
@@ -4279,6 +4287,11 @@ function triggerOverbreakAlerts(names) {
 function clearOverbreakTracking(currentNames) {
   const cur = new Set(currentNames);
   lastOverbreakNames.forEach(n => { if (!cur.has(n)) lastOverbreakNames.delete(n); });
+  // Stop repeating beep if no one is overbreaking anymore
+  if (lastOverbreakNames.size === 0 && _overbreakSoundTimer) {
+    clearInterval(_overbreakSoundTimer);
+    _overbreakSoundTimer = null;
+  }
 }
 
 // ── Analytics Rendering ──
