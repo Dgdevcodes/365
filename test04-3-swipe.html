@@ -2289,47 +2289,13 @@ function getRecord(shift,day,person){
 }
 
 /* ── Navigation ── */
-// ── Page history for swipe-back ──────────────────────────────
-const _pageHistory = ['daily'];
 function showPage(p){
   document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
   document.getElementById('nav-'+p).classList.add('active');
   if(p==='overview') renderOverview();
-  if(_pageHistory[_pageHistory.length-1] !== p){
-    _pageHistory.push(p);
-    if(_pageHistory.length > 10) _pageHistory.shift();
-  }
 }
-function _goBack(){
-  if(_pageHistory.length > 1){
-    _pageHistory.pop();
-    const prev = _pageHistory[_pageHistory.length-1];
-    document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
-    document.getElementById('page-'+prev).classList.add('active');
-    document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
-    document.getElementById('nav-'+prev).classList.add('active');
-    if(prev==='overview') renderOverview();
-    if(typeof syncMobileNav==='function') syncMobileNav(prev);
-  }
-}
-
-// ── Swipe-right-to-go-back (edge swipe like iOS/Android) ─────
-(function(){
-  let _tx=0,_ty=0,_active=false;
-  document.addEventListener('touchstart',function(e){
-    const t=e.touches[0];
-    _tx=t.clientX;_ty=t.clientY;_active=true;
-  },{passive:true});
-  document.addEventListener('touchend',function(e){
-    if(!_active) return; _active=false;
-    const t=e.changedTouches[0];
-    const dx=t.clientX-_tx,dy=t.clientY-_ty;
-    // Must start within 30px of left edge, swipe >60px right, mostly horizontal
-    if(_tx<30 && dx>60 && Math.abs(dy)<80) _goBack();
-  },{passive:true});
-})();
 
 function showToast(msg){
   const t=document.getElementById('toast');
@@ -4228,18 +4194,26 @@ function getAudioCtx() {
 function playOverbreakBeep() {
   try {
     const ctx = getAudioCtx();
-    const freqs = [880, 660, 880];
-    freqs.forEach((f, i) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain); gain.connect(ctx.destination);
-      osc.frequency.value = f;
-      osc.type = 'sine';
-      gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.18);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.18 + 0.15);
-      osc.start(ctx.currentTime + i * 0.18);
-      osc.stop(ctx.currentTime + i * 0.18 + 0.15);
-    });
+    // Mobile browsers suspend AudioContext until user interaction — resume first
+    const doPlay = () => {
+      const freqs = [880, 660, 880];
+      freqs.forEach((f, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.frequency.value = f;
+        osc.type = 'sine';
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.18);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.18 + 0.15);
+        osc.start(ctx.currentTime + i * 0.18);
+        osc.stop(ctx.currentTime + i * 0.18 + 0.15);
+      });
+    };
+    if (ctx.state === 'suspended') {
+      ctx.resume().then(doPlay).catch(e => console.warn('Audio resume error:', e));
+    } else {
+      doPlay();
+    }
   } catch(e) { console.warn('Audio error:', e); }
 }
 
@@ -4250,7 +4224,12 @@ function toggleSound() {
   btn.classList.toggle('active', soundEnabled);
   icon.className = soundEnabled ? 'ti ti-volume' : 'ti ti-volume-off';
   showToast(soundEnabled ? '🔔 Sound alerts ON' : '🔕 Sound alerts OFF');
-  if (soundEnabled) playOverbreakBeep();
+  if (soundEnabled) {
+    // Resume AudioContext first (required by mobile browsers), then play test beep
+    const ctx = getAudioCtx();
+    const play = () => playOverbreakBeep();
+    if (ctx.state === 'suspended') ctx.resume().then(play); else play();
+  }
 }
 
 function togglePush() {
