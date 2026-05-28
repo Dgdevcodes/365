@@ -4185,12 +4185,20 @@ let soundEnabled = false;
 let pushEnabled = false;
 let lastOverbreakNames = new Set();
 let audioCtx = null;
-let _overbreakSoundTimer = null; // repeating beep every 60s while overbreak active
+let _overbreakSoundTimer = null; // repeating beep every 3s while overbreak active
 
 function getAudioCtx() {
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   return audioCtx;
 }
+
+// Prime AudioContext on ANY touch — keeps it unlocked throughout the session
+document.addEventListener('touchstart', function() {
+  try {
+    const ctx = getAudioCtx();
+    if (ctx.state === 'suspended') ctx.resume();
+  } catch(e) {}
+}, { passive: true });
 
 function playOverbreakBeep() {
   try {
@@ -4204,7 +4212,7 @@ function playOverbreakBeep() {
         osc.connect(gain); gain.connect(ctx.destination);
         osc.frequency.value = f;
         osc.type = 'sine';
-        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.18);
+        gain.gain.setValueAtTime(0.4, ctx.currentTime + i * 0.18);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.18 + 0.15);
         osc.start(ctx.currentTime + i * 0.18);
         osc.stop(ctx.currentTime + i * 0.18 + 0.15);
