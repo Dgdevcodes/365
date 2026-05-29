@@ -58,7 +58,7 @@ body.fullscreen-mode .main{width:100%}
 body.fullscreen-mode .fullscreen-exit-btn{display:flex}
 
 /* ── Compact Card View ── */
-body.compact-mode #bl-active-list{grid-template-columns:repeat(auto-fill,minmax(180px,1fr)) !important;gap:6px}
+body.compact-mode #bl-active-list{grid-template-columns:repeat(auto-fill,minmax(200px,1fr)) !important;gap:6px}
 body.compact-mode .bl-card{padding:7px 10px}
 body.compact-mode .bl-card-name{font-size:11px}
 body.compact-mode .bl-card-timer{font-size:13px}
@@ -437,18 +437,19 @@ body.dark-mode .rts-item.no-reply{border-color:#7f1d1d;background:#2d1010}
 
 /* ── Premium 3D Break Cards (main app) ── */
 .sm-card{
-  border-radius:20px;border:none;padding:0;position:relative;
+  border-radius:16px;border:none;padding:0;position:relative;
   display:flex;flex-direction:column;align-items:stretch;
-  transition:transform 0.25s cubic-bezier(.4,0,.2,1);background:transparent;
+  transition:transform 0.18s ease,box-shadow 0.18s ease;background:transparent;
+  min-width:300px;
 }
-.sm-card:hover{transform:translateY(-4px) scale(1.02)}
+.sm-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(230,126,0,0.15)}
 .sm-card-inner{
-  border-radius:20px;padding:20px 14px 16px;
-  display:flex;flex-direction:column;align-items:center;gap:12px;
+  border-radius:16px;padding:16px 20px;
+  display:flex;flex-direction:row;align-items:center;gap:20px;
   position:relative;overflow:hidden;
-  background:linear-gradient(160deg,#FFFDF7 0%,#FFF5DC 100%);
+  background:linear-gradient(135deg,#FFFDF7 0%,#FFF5DC 100%);
   border:1.5px solid rgba(255,210,110,0.55);
-  box-shadow:0 1px 0 rgba(255,255,255,0.95) inset,0 2px 4px rgba(230,126,0,0.06),0 8px 28px rgba(230,126,0,0.12);
+  box-shadow:0 1px 0 rgba(255,255,255,0.95) inset,0 2px 4px rgba(230,126,0,0.06),0 4px 16px rgba(230,126,0,0.08);
 }
 .sm-card-inner::before{
   content:'';position:absolute;top:0;left:15%;right:15%;height:1px;
@@ -467,7 +468,7 @@ body.dark-mode .rts-item.no-reply{border-color:#7f1d1d;background:#2d1010}
 .sm-card.sm-type-cr .sm-card-inner{border-color:rgba(139,92,246,0.35)}
 .sm-card.sm-type-others .sm-card-inner{border-color:rgba(16,185,129,0.38)}
 /* 3D Ring */
-.sm-ring-wrap{position:relative;width:90px;height:90px;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.13))}
+.sm-ring-wrap{position:relative;width:90px;height:90px;flex-shrink:0;filter:drop-shadow(0 3px 8px rgba(0,0,0,0.13))}
 .sm-ring-svg{width:90px;height:90px}
 .sm-ring-center{
   position:absolute;inset:0;display:flex;flex-direction:column;
@@ -475,16 +476,16 @@ body.dark-mode .rts-item.no-reply{border-color:#7f1d1d;background:#2d1010}
   background:radial-gradient(circle at 38% 32%,rgba(255,255,255,0.98) 0%,rgba(255,248,230,0.88) 100%);
   box-shadow:0 2px 10px rgba(0,0,0,0.09),0 1px 0 rgba(255,255,255,1) inset;
 }
-.sm-ring-time{font-size:13px;font-weight:800;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;line-height:1}
+.sm-ring-time{font-size:14px;font-weight:800;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;line-height:1}
 .sm-ring-time.ot,.sm-ring-time.over{color:#dc2626}
 .sm-ring-time.ok{color:#1A0F00}
-.sm-ring-sublbl{font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-top:2px;color:#B08040}
+.sm-ring-sublbl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-top:2px;color:#B08040}
 .sm-ring-sublbl.ot{color:#dc2626}
 /* Card body */
-.sm-card-body{width:100%;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center}
-.card-name{font-size:12.5px;font-weight:700;color:#1A0F00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;text-align:center}
-.card-type{font-size:10px;color:#8A5C20;font-weight:500;text-align:center}
-.card-badge{margin-top:4px;display:inline-block;font-size:9.5px;font-weight:700;padding:2px 9px;border-radius:5px;letter-spacing:0.05em;text-transform:uppercase}
+.sm-card-body{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;min-width:0}
+.card-name{font-size:17px;font-weight:700;color:#1A0F00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;text-align:left}
+.card-type{font-size:13px;color:#8A5C20;font-weight:500;text-align:left;white-space:nowrap}
+.card-badge{margin-top:6px;display:inline-block;font-size:13px;font-weight:700;padding:4px 12px;border-radius:5px;letter-spacing:0.05em;text-transform:uppercase}
 .card-badge.ot{background:#FEF2F2;color:#DC2626;border:1px solid rgba(220,38,38,0.18)}
 .card-badge.ok{background:#ECFDF5;color:#065F46;border:1px solid rgba(5,150,105,0.18)}
 /* dark mode */
@@ -1473,7 +1474,24 @@ body.dark-mode .bl-topbar-controls-wrap { background: #1e293b; border-color: #2d
 .login-err{font-size:11.5px;color:#dc2626;margin-top:8px;display:none;background:#fef2f2;border:1px solid #fecaca;border-radius:6px;padding:7px 10px}
 @media(max-width:640px){.login-card{flex-direction:column;min-height:unset}.login-left{padding:28px 28px 32px}.login-left-headline{font-size:28px;padding-top:16px}.login-right{padding:28px 28px 36px}}
 .login-role-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
-.role-admin{background:#fff3e0;color:#e67e00}
+/* ── Leave Request / Approval ── */
+.lr-status-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:0.04em}
+.lr-status-pending{background:#FFF8E1;color:#B45309;border:1px solid rgba(245,158,11,0.3)}
+.lr-status-approved{background:#F0FDF4;color:#065F46;border:1px solid rgba(5,150,105,0.3)}
+.lr-status-rejected{background:#FFF0F0;color:#991B1B;border:1px solid rgba(220,38,38,0.3)}
+.la-tab{background:var(--surface);color:var(--text2)}
+.la-tab.active{background:var(--primary);color:#fff;border-color:var(--primary) !important}
+.la-card{background:var(--surface);border-radius:var(--radius-md);border:1px solid var(--border);overflow:hidden;transition:box-shadow 0.15s;box-shadow:var(--shadow-sm)}
+.la-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+.la-card.status-pending{border-left:4px solid #F59E0B}
+.la-card.status-approved{border-left:4px solid #059669}
+.la-card.status-rejected{border-left:4px solid #DC2626}
+.la-date-chip{display:inline-block;padding:2px 8px;border-radius:5px;background:var(--primary-light);color:var(--primary);font-size:11px;font-weight:600;margin:2px}
+.lr-date-tag{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;background:var(--primary-light);color:var(--primary);font-size:12px;font-weight:600;border:1px solid rgba(230,126,0,0.2)}
+.lr-date-tag button{background:none;border:none;cursor:pointer;color:var(--primary);font-size:13px;line-height:1;padding:0;margin:0;display:flex;align-items:center}
+body.dark-mode .la-card{background:#2A1800;border-color:#5A3800}
+body.dark-mode .la-date-chip{background:#3A2200;color:#FFAA33}
+body.dark-mode .lr-date-tag{background:#3A2200;color:#FFAA33}
 .role-agent{background:#f0fdf4;color:#059669}
 /* Hide ops nav items for agent role */
 body.role-agent .ops-only{display:none !important}
@@ -1867,11 +1885,11 @@ body.dark-mode .shift-tab.active {
       <div class="login-right-sub">Sign in to continue</div>
       <div class="login-field">
         <label>Username</label>
-        <input type="text" id="login-user" placeholder="Enter username" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
+        <input type="text" id="login-user" placeholder="e.g. BL-0696" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
       </div>
       <div class="login-field">
         <label>Password</label>
-        <input type="password" id="login-pass" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+        <input type="password" id="login-pass" placeholder="Enter your BL number as password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
       </div>
       <div class="login-err" id="login-err">Incorrect username or password.</div>
       <button class="login-btn" onclick="doLogin()">Sign In</button>
@@ -1928,6 +1946,9 @@ body.dark-mode .shift-tab.active {
     <div class="nav-item ops-only" onclick="openEditModal()"><i class="ti ti-calendar-plus"></i> <span>Create Attendance</span></div>
     <div class="nav-item ops-only" onclick="openDaysOffModal()"><i class="ti ti-calendar-off"></i> <span>Days Off</span></div>
     <div class="nav-item ops-only" onclick="showPage('editschedule')" id="nav-editschedule"><i class="ti ti-arrows-exchange"></i> <span>Edit Agent Schedule</span></div>
+    <div class="nav-item ops-only" onclick="showPage('leaveapproval')" id="nav-leaveapproval"><i class="ti ti-clipboard-check"></i> <span>Leave Approval</span></div>
+    <div class="nav-section">Requests</div>
+    <div class="nav-item" onclick="showPage('leaverequest')" id="nav-leaverequest"><i class="ti ti-calendar-event"></i> <span>Request for Leave</span></div>
     <div class="nav-section ops-only">Others</div>
     <div class="nav-item ops-only" onclick="showPage('info')" id="nav-info"><i class="ti ti-info-circle"></i> <span>About & Tools</span></div>
   </div>
@@ -1990,7 +2011,7 @@ body.dark-mode .shift-tab.active {
       </div>
       <div class="save-row">
         <button class="export-btn" onclick="exportCSV()"><i class="ti ti-download" style="font-size:14px"></i> Export CSV</button>
-        <button class="save-btn" onclick="saveDay()"><i class="ti ti-device-floppy" style="font-size:14px"></i> Save</button>
+        <div style="display:flex;align-items:center;gap:6px;padding:7px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;font-weight:600;color:var(--text3)"><i class="ti ti-cloud-check" style="font-size:14px;color:#059669"></i> Auto-saving</div>
       </div>
     </div>
   </div>
@@ -2202,7 +2223,7 @@ body.dark-mode .shift-tab.active {
           </div>
         </div>
         <!-- supa&claud cards render here -->
-        <div id="bl-active-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;padding:14px 16px;min-height:120px">
+        <div id="bl-active-list" style="display:flex;flex-direction:column;gap:10px;padding:14px 16px;min-height:80px">
           <div class="bl-active-empty" style="grid-column:1/-1"><i class="ti ti-coffee-off"></i><span>Loading break data...</span></div>
         </div>
       </div>
@@ -2642,6 +2663,152 @@ body.dark-mode .shift-tab.active {
     </div>
   </div>
 
+  <!-- ══ PAGE: REQUEST FOR LEAVE (Agent) ══ -->
+  <div class="page" id="page-leaverequest">
+    <div class="topbar">
+      <div class="topbar-title"><i class="ti ti-calendar-event" style="margin-right:6px;color:var(--primary)"></i>Request for Leave</div>
+      <span class="topbar-date" id="lr-topbar-date"></span>
+    </div>
+    <div class="content">
+
+      <!-- Submit form -->
+      <div style="background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow-sm);margin-bottom:18px">
+        <div style="padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#FFF3E0,#FFFBF0)">
+          <span style="width:32px;height:32px;border-radius:8px;background:#FFF3E0;color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0"><i class="ti ti-plus"></i></span>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text)">File a Leave Request</div>
+            <div style="font-size:11px;color:var(--text3)">Fill in the form below and submit for approval</div>
+          </div>
+        </div>
+        <div style="padding:18px">
+          <!-- Hidden field: stores the BL-number (agentId) internally -->
+          <input id="lr-agent-id" type="hidden" value="">
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+            <div>
+              <label style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:5px">Agent Name</label>
+              <input id="lr-agent-name" type="text" readonly
+                style="width:100%;padding:9px 12px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface2);font-size:13px;color:var(--text);box-sizing:border-box;cursor:default;opacity:1"
+                placeholder="Auto-filled from your account">
+              <div style="font-size:10px;color:var(--text3);margin-top:3px;display:flex;align-items:center;gap:4px">
+                <i class="ti ti-id-badge" style="font-size:11px;color:var(--primary)"></i>
+                ID: <span id="lr-agent-id-display" style="font-family:'DM Mono',monospace;color:var(--primary);font-weight:600">—</span>
+                <span style="color:var(--text3)">&nbsp;·&nbsp;Auto-filled from login</span>
+              </div>
+            </div>
+            <div>
+              <label style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:5px">Date of Request</label>
+              <input id="lr-date-of-request" type="text" readonly
+                style="width:100%;padding:9px 12px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface2);font-size:13px;color:var(--text);box-sizing:border-box;cursor:default">
+            </div>
+          </div>
+          <div style="margin-bottom:14px">
+            <label style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:5px">Leave Date(s) <span style="color:var(--primary)">*</span></label>
+
+            <!-- Custom multi-date calendar picker -->
+            <div id="lr-cal-wrap" style="border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);overflow:hidden;user-select:none;max-width:340px">
+              <!-- Calendar nav -->
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--surface2)">
+                <button type="button" onclick="lrCalPrev()" style="width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;color:var(--text2)">‹</button>
+                <span id="lr-cal-title" style="font-size:13px;font-weight:700;color:var(--text)"></span>
+                <button type="button" onclick="lrCalNext()" style="width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;color:var(--text2)">›</button>
+              </div>
+              <!-- Day headers -->
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);padding:6px 10px 2px">
+                <div style="text-align:center;font-size:10px;font-weight:700;color:var(--text3);padding:3px 0">Su</div>
+                <div style="text-align:center;font-size:10px;font-weight:700;color:var(--text3);padding:3px 0">Mo</div>
+                <div style="text-align:center;font-size:10px;font-weight:700;color:var(--text3);padding:3px 0">Tu</div>
+                <div style="text-align:center;font-size:10px;font-weight:700;color:var(--text3);padding:3px 0">We</div>
+                <div style="text-align:center;font-size:10px;font-weight:700;color:var(--text3);padding:3px 0">Th</div>
+                <div style="text-align:center;font-size:10px;font-weight:700;color:var(--text3);padding:3px 0">Fr</div>
+                <div style="text-align:center;font-size:10px;font-weight:700;color:var(--text3);padding:3px 0">Sa</div>
+              </div>
+              <!-- Day grid -->
+              <div id="lr-cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);padding:2px 10px 10px;gap:2px"></div>
+            </div>
+
+            <!-- Selected date tags -->
+            <div style="margin-top:8px;font-size:10.5px;color:var(--text3);margin-bottom:4px" id="lr-date-count-label">No dates selected — click dates on the calendar above</div>
+            <div id="lr-date-tags" style="display:flex;flex-wrap:wrap;gap:6px;min-height:0"></div>
+          </div>
+          <div style="margin-bottom:16px">
+            <label style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:5px">Reason <span style="color:var(--primary)">*</span></label>
+            <textarea id="lr-reason" rows="3" placeholder="State your reason for leave..."
+              style="width:100%;padding:9px 12px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface);font-size:13px;color:var(--text);resize:vertical;box-sizing:border-box;font-family:inherit"></textarea>
+          </div>
+          <button onclick="lrSubmit()" style="padding:10px 24px;border-radius:var(--radius-sm);background:var(--primary);color:#fff;border:none;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:7px;box-shadow:0 2px 8px rgba(230,126,0,0.25)">
+            <i class="ti ti-send"></i> Submit Request
+          </button>
+        </div>
+      </div>
+
+      <!-- My Requests Table -->
+      <div style="background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow-sm)">
+        <div style="padding:13px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#FFF3E0,#FFFBF0)">
+          <div style="font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px"><i class="ti ti-list" style="color:var(--primary)"></i> My Leave Requests</div>
+          <button onclick="lrLoadMyRequests()" style="padding:5px 12px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface);font-size:11px;font-weight:600;cursor:pointer;color:var(--text2);display:flex;align-items:center;gap:5px"><i class="ti ti-refresh"></i> Refresh</button>
+        </div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+            <thead>
+              <tr style="background:var(--surface2)">
+                <th style="padding:9px 14px;text-align:left;font-weight:700;color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap">Date Filed</th>
+                <th style="padding:9px 14px;text-align:left;font-weight:700;color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:0.06em">Leave Date(s)</th>
+                <th style="padding:9px 14px;text-align:left;font-weight:700;color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:0.06em">Reason</th>
+                <th style="padding:9px 14px;text-align:center;font-weight:700;color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:0.06em">Status</th>
+              </tr>
+            </thead>
+            <tbody id="lr-my-list">
+              <tr><td colspan="4" style="padding:32px;text-align:center;color:var(--text3);font-size:12px"><i class="ti ti-loader" style="font-size:20px;display:block;margin:0 auto 6px"></i>Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ PAGE: LEAVE APPROVAL (Admin/Ops only) ══ -->
+  <div class="page" id="page-leaveapproval">
+    <div class="topbar">
+      <div class="topbar-title"><i class="ti ti-clipboard-check" style="margin-right:6px;color:var(--primary)"></i>Leave Approval</div>
+      <span class="topbar-date">Operations · Admin Only</span>
+    </div>
+    <div class="content">
+
+      <!-- Stats bar -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
+        <div style="background:var(--surface);border-radius:var(--radius-md);border:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-sm)">
+          <span style="width:36px;height:36px;border-radius:9px;background:#FFF8E1;color:#F59E0B;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0"><i class="ti ti-clock"></i></span>
+          <div><div id="la-stat-pending" style="font-size:20px;font-weight:800;color:var(--text)">—</div><div style="font-size:10.5px;color:var(--text3);font-weight:600">Pending</div></div>
+        </div>
+        <div style="background:var(--surface);border-radius:var(--radius-md);border:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-sm)">
+          <span style="width:36px;height:36px;border-radius:9px;background:#F0FDF4;color:#059669;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0"><i class="ti ti-circle-check"></i></span>
+          <div><div id="la-stat-approved" style="font-size:20px;font-weight:800;color:var(--text)">—</div><div style="font-size:10.5px;color:var(--text3);font-weight:600">Approved</div></div>
+        </div>
+        <div style="background:var(--surface);border-radius:var(--radius-md);border:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-sm)">
+          <span style="width:36px;height:36px;border-radius:9px;background:#FFF0F0;color:#DC2626;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0"><i class="ti ti-circle-x"></i></span>
+          <div><div id="la-stat-rejected" style="font-size:20px;font-weight:800;color:var(--text)">—</div><div style="font-size:10.5px;color:var(--text3);font-weight:600">Rejected</div></div>
+        </div>
+      </div>
+
+      <!-- Filter tabs -->
+      <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">
+        <button class="la-tab active" data-filter="pending"  onclick="laSetFilter('pending')"  style="padding:6px 16px;border-radius:20px;border:1px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">⏳ Pending</button>
+        <button class="la-tab"        data-filter="all"      onclick="laSetFilter('all')"      style="padding:6px 16px;border-radius:20px;border:1px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">All Requests</button>
+        <button class="la-tab"        data-filter="approved" onclick="laSetFilter('approved')" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">✅ Approved</button>
+        <button class="la-tab"        data-filter="rejected" onclick="laSetFilter('rejected')" style="padding:6px 16px;border-radius:20px;border:1px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">❌ Rejected</button>
+        <button onclick="laLoad()" style="margin-left:auto;padding:6px 14px;border-radius:20px;border:1px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;background:var(--surface);color:var(--text2)"><i class="ti ti-refresh"></i> Refresh</button>
+      </div>
+
+      <!-- Leave request cards -->
+      <div id="la-list" style="display:flex;flex-direction:column;gap:10px">
+        <div style="padding:40px;text-align:center;color:var(--text3);font-size:12px"><i class="ti ti-loader" style="font-size:24px;display:block;margin:0 auto 8px"></i>Loading requests...</div>
+      </div>
+
+    </div>
+  </div>
+
 </div><!-- /main -->
 </div><!-- /app -->
 
@@ -2901,41 +3068,41 @@ body.dark-mode .shift-tab.active {
 <script>
 const ROSTER = {
   AM:[
-    {name:"Erol Rusty Ocampo Velasco",pos:"TL",daysOff:{1:[],2:[]}},
-    {name:"Reymart Alcando",pos:"TL",daysOff:{1:[],2:[]}},
-    {name:"Kely John Diaz",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Trisha Honey Marie Adorionisio",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Angelle Lachica",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Bryan Phillip San Pedro",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Jose Rowell Pedrilva",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Jemlyn Guerra",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Rochelle Crimao Dela Cruz",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Joshua Quirante",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Regina Coralia Visperas",pos:"Agent",daysOff:{1:[],2:[]}},
+    {name:"Erol Rusty Ocampo Velasco",pos:"TL"},
+    {name:"Reymart Alcando",pos:"TL"},
+    {name:"Kely John Diaz",pos:"Agent"},
+    {name:"Trisha Honey Marie Adorionisio",pos:"Agent"},
+    {name:"Angelle Lachica",pos:"Agent"},
+    {name:"Bryan Phillip San Pedro",pos:"Agent"},
+    {name:"Jose Rowell Pedrilva",pos:"Agent"},
+    {name:"Jemlyn Guerra",pos:"Agent"},
+    {name:"Rochelle Crimao Dela Cruz",pos:"Agent"},
+    {name:"Joshua Quirante",pos:"Agent"},
+    {name:"Regina Coralia Visperas",pos:"Agent"},
   ],
   MID:[
-    {name:"Bernard Peralta",pos:"ATL",daysOff:{1:[],2:[]}},
-    {name:"Jenica E. Diaz",pos:"TL",daysOff:{1:[],2:[]}},
-    {name:"Audie Lirio",pos:"TL",daysOff:{1:[],2:[]}},
-    {name:"Raymond B. De Castro",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Camily Joy Risma Erasga",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Liza Marie Morales Fernandez",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Arwin Distura",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Sheila Joy Pedroso",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Ma. Luisa Garcia",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Dominique Angelo Gaddi",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Allen Mark Kenneth Sapiera",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Dianne Anacel Perez",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Percival Rio Coyoca",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Mark Joseph Dola",pos:"Agent",daysOff:{1:[],2:[]}},
+    {name:"Bernard Peralta",pos:"ATL"},
+    {name:"Jenica E. Diaz",pos:"TL"},
+    {name:"Audie Lirio",pos:"TL"},
+    {name:"Raymond B. De Castro",pos:"Agent"},
+    {name:"Camily Joy Risma Erasga",pos:"Agent"},
+    {name:"Liza Marie Morales Fernandez",pos:"Agent"},
+    {name:"Arwin Distura",pos:"Agent"},
+    {name:"Sheila Joy Pedroso",pos:"Agent"},
+    {name:"Ma. Luisa Garcia",pos:"Agent"},
+    {name:"Dominique Angelo Gaddi",pos:"Agent"},
+    {name:"Allen Mark Kenneth Sapiera",pos:"Agent"},
+    {name:"Dianne Anacel Perez",pos:"Agent"},
+    {name:"Percival Rio Coyoca",pos:"Agent"},
+    {name:"Mark Joseph Dola",pos:"Agent"},
   ],
   GY:[
-    {name:"Jerome Catuday Pagdanganan",pos:"TL",daysOff:{1:[],2:[]}},
-    {name:"Joshua Boac",pos:"TL",daysOff:{1:[],2:[]}},
-    {name:"Ryanne Nelson Avinda Espinosa",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Niethengale Nueva",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Raina Mae Ocfemia",pos:"Agent",daysOff:{1:[],2:[]}},
-    {name:"Edrian Vergabera",pos:"Agent",daysOff:{1:[],2:[]}},
+    {name:"Jerome Catuday Pagdanganan",pos:"TL"},
+    {name:"Joshua Boac",pos:"TL"},
+    {name:"Ryanne Nelson Avinda Espinosa",pos:"Agent"},
+    {name:"Niethengale Nueva",pos:"Agent"},
+    {name:"Raina Mae Ocfemia",pos:"Agent"},
+    {name:"Edrian Vergabera",pos:"Agent"},
   ]
 };
 
@@ -2973,8 +3140,9 @@ function getKey(shift,day,name){ return shift+'|'+day+'|'+name; }
 function getRecord(shift,day,person){
   const k = getKey(shift,day,person.name);
   if(!attendanceData[k]){
-    if(isScheduledOff(person,day)) attendanceData[k]={status:'dayoff',timeIn:'',timeOut:'',breaks:[]};
-    else attendanceData[k]={status:'present',timeIn:'',timeOut:'',breaks:[]};
+    // No saved record yet — default to present
+    // The AttendanceLog from Sheet (loaded on render) is the source of truth
+    attendanceData[k]={status:'present',timeIn:'',timeOut:'',breaks:[],_auto:true};
   }
   return attendanceData[k];
 }
@@ -3071,7 +3239,7 @@ function applyDateFilter(){ applyDateInput(); }
 
 function setStatus(name,status){
   const k=getKey(currentShift,currentDay,name);
-  if(attendanceData[k]){ attendanceData[k].status=status; renderDaily(); }
+  if(attendanceData[k]){ attendanceData[k].status=status; attendanceData[k]._auto=false; renderDaily(); }
 }
 
 function setStatusAndSync(name,status){
@@ -3088,7 +3256,7 @@ function setStatusAndSync(name,status){
       status: status
     };
     gasPost(payload)
-      .then(data=>{ if(data.ok) showToast('✅ '+name.split(' ')[0]+' → '+status+' synced!'); })
+      .then(data=>{ if(data.ok) showToast('☁️ '+name.split(' ')[0]+' → '+status); })
       .catch(()=>{ /* silent fail — still updated locally */ });
   }
   // Also re-render overview if open
@@ -3153,20 +3321,37 @@ function renderDaily(){
   if(!monthlyRosters[k] && gasUrl){
     // Set blank placeholder immediately so we can render loading state
     monthlyRosters[k] = { AM: [], MID: [], GY: [], _loading: true };
-    fetch(gasUrl + '?action=roster&month=' + currentMonth + '&year=' + currentYear + '&t=' + Date.now() + '&token=' + encodeURIComponent(_getToken()), { method:'GET', redirect:'follow', cache:'no-store' })
-      .then(r=>r.json())
-      .then(data=>{
-        if(data.ok && data.roster){
+
+    // Fetch roster AND saved attendance in parallel
+    Promise.all([
+      fetch(gasUrl + '?action=roster&month=' + currentMonth + '&year=' + currentYear + '&t=' + Date.now() + '&token=' + encodeURIComponent(_getToken()), { method:'GET', redirect:'follow', cache:'no-store' }).then(r=>r.json()),
+      fetch(gasUrl + '?action=attendance&month=' + currentMonth + '&year=' + currentYear + '&t=' + Date.now() + '&token=' + encodeURIComponent(_getToken()), { method:'GET', redirect:'follow', cache:'no-store' }).then(r=>r.json()).catch(()=>({ok:false,records:[]}))
+    ]).then(([rosterData, attData]) => {
+        if(rosterData.ok && rosterData.roster){
           monthlyRosters[k] = {
-            AM:  (data.roster.AM||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
-            MID: (data.roster.MID||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
-            GY:  (data.roster.GY||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
+            AM:  (rosterData.roster.AM||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
+            MID: (rosterData.roster.MID||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
+            GY:  (rosterData.roster.GY||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
           };
         } else {
-          // No roster saved in Sheet for this month — show empty, don't fall back to hardcoded data
           monthlyRosters[k] = { AM: [], MID: [], GY: [] };
         }
-        renderDaily(); // re-render once correct data arrives
+
+        // Apply saved attendance from AttendanceLog — these override schedule defaults
+        if(attData.ok && attData.records){
+          attData.records.forEach(rec=>{
+            const ak = getKey(rec.shift, rec.day, rec.name);
+            attendanceData[ak] = {
+              status:   rec.status,
+              timeIn:   rec.timeIn  || '',
+              timeOut:  rec.timeOut || '',
+              breaks:   [],
+              _auto:    false  // manually saved — do not override with schedule
+            };
+          });
+        }
+
+        renderDaily();
       }).catch(()=>{
         monthlyRosters[k] = { AM: [], MID: [], GY: [] };
         renderDaily();
@@ -3253,32 +3438,34 @@ function updateOvMonthLabel(){
 function getOvRoster(){
   const k = monthKey(ovYear, ovMonth);
   if(!monthlyRosters[k] && gasUrl){
-    // Set blank placeholder immediately so renderOverview can proceed
-    monthlyRosters[k] = {
-      AM:  [], MID: [], GY: [],
-      _loading: true
-    };
-    // Fetch from sheet for the SPECIFIC month/year selected
-    fetch(gasUrl + '?action=roster&month=' + ovMonth + '&year=' + ovYear + '&t=' + Date.now()+'&token='+encodeURIComponent(_getToken()), { method:'GET', redirect:'follow', cache:'no-store' })
-      .then(r=>r.json())
-      .then(data=>{
-        if(data.ok && data.roster){
+    monthlyRosters[k] = { AM:[], MID:[], GY:[], _loading:true };
+
+    Promise.all([
+      fetch(gasUrl + '?action=roster&month=' + ovMonth + '&year=' + ovYear + '&t=' + Date.now()+'&token='+encodeURIComponent(_getToken()), { method:'GET', redirect:'follow', cache:'no-store' }).then(r=>r.json()),
+      fetch(gasUrl + '?action=attendance&month=' + ovMonth + '&year=' + ovYear + '&t=' + Date.now()+'&token='+encodeURIComponent(_getToken()), { method:'GET', redirect:'follow', cache:'no-store' }).then(r=>r.json()).catch(()=>({ok:false,records:[]}))
+    ]).then(([rosterData, attData]) => {
+        if(rosterData.ok && rosterData.roster){
           monthlyRosters[k] = {
-            AM:  (data.roster.AM||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
-            MID: (data.roster.MID||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
-            GY:  (data.roster.GY||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
+            AM:  (rosterData.roster.AM||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
+            MID: (rosterData.roster.MID||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
+            GY:  (rosterData.roster.GY||[]).map(p=>({name:p.name, pos:p.pos, daysOff:p.daysOff||{1:[],2:[]}})),
           };
         } else {
-          // No data for this month — show empty
-          monthlyRosters[k] = { AM: [], MID: [], GY: [] };
+          monthlyRosters[k] = { AM:[], MID:[], GY:[] };
         }
-        renderOverview(); // re-render once correct month data arrives
+        if(attData.ok && attData.records){
+          attData.records.forEach(rec=>{
+            const ak = rec.year+'|'+rec.month+'|'+rec.shift+'|'+rec.day+'|'+rec.name;
+            attendanceData[ak] = { status:rec.status, timeIn:rec.timeIn||'', timeOut:rec.timeOut||'', breaks:[], _auto:false };
+          });
+        }
+        renderOverview();
       }).catch(()=>{
-        monthlyRosters[k] = { AM: [], MID: [], GY: [] };
+        monthlyRosters[k] = { AM:[], MID:[], GY:[] };
         renderOverview();
       });
   } else if(!monthlyRosters[k]){
-    monthlyRosters[k] = { AM: [], MID: [], GY: [] };
+    monthlyRosters[k] = { AM:[], MID:[], GY:[] };
   }
   return monthlyRosters[k];
 }
@@ -3286,9 +3473,7 @@ function getOvRoster(){
 function getOvRecord(shift, day, person){
   const k = ovYear+'|'+ovMonth+'|'+shift+'|'+day+'|'+person.name;
   if(!attendanceData[k]){
-    const half = day<=15?1:2;
-    const off = ((person.daysOff&&person.daysOff[half])||[]).includes(day);
-    attendanceData[k] = { status: off ? 'dayoff' : 'present', timeIn:'', timeOut:'', breaks:[] };
+    attendanceData[k] = { status:'present', timeIn:'', timeOut:'', breaks:[], _auto:true };
   }
   return attendanceData[k];
 }
@@ -3297,7 +3482,8 @@ function toggleOvCell(shift,name,day){
   if(isWeekendForMonth(ovYear,ovMonth,day)) return;
   const k = ovYear+'|'+ovMonth+'|'+shift+'|'+day+'|'+name;
   const cur = attendanceData[k] ? attendanceData[k].status : 'present';
-  if(!attendanceData[k]) attendanceData[k]={status:'present',timeIn:'',timeOut:'',breaks:[]};
+  if(!attendanceData[k]) attendanceData[k]={status:'present',timeIn:'',timeOut:'',breaks:[],_auto:false};
+  attendanceData[k]._auto = false;
   if(cur==='present') attendanceData[k].status='absent';
   else if(cur==='absent') attendanceData[k].status='present';
   else if(cur==='dayoff') attendanceData[k].status='present';
@@ -3559,7 +3745,7 @@ function getMonthRoster(year, month){
     ['AM','MID','GY'].forEach(sh => {
       monthlyRosters[k][sh] = ROSTER[sh].map(p => ({
         name: p.name, pos: p.pos,
-        daysOff: JSON.parse(JSON.stringify(p.daysOff))
+        daysOff: { 1: [], 2: [] }
       }));
     });
   }
@@ -4856,6 +5042,11 @@ function renderBreakLogs() {
       const sublbl_bl = isOver ? 'OVER' : isWarn ? 'SOON' : 'LIVE';
       const tcBl = s.type ? (s.type.toLowerCase().includes('break') ? 'sm-type-break' : s.type.toLowerCase().includes('cr') ? 'sm-type-cr' : 'sm-type-others') : 'sm-type-others';
       const otCls = isOver ? ' sm-overtime' : '';
+      const otMs2 = elapsedMs - s.max * 60000;
+      const otH2 = Math.floor(otMs2 / 3600000);
+      const otM2 = Math.floor((otMs2 % 3600000) / 60000);
+      const otStr2 = (otH2 > 0 ? otH2 + ':' : '') + String(otM2).padStart(2,'0');
+      const displayTime = s.max >= 9999 ? '∞' : (isOver ? '+' + otStr2 : fmtTime(elapsedMs));
       return `<div class="sm-card ${tcBl}${otCls}" id="card-${id}">
         <div class="sm-card-inner">
           <div class="sm-ring-wrap">
@@ -4866,16 +5057,14 @@ function renderBreakLogs() {
                 stroke-linecap="round" transform="rotate(-90 45 45)"/>
             </svg>
             <div class="sm-ring-center">
-              ${s.max >= 9999
-                ? `<div class="sm-ring-time ok" style="font-size:18px">∞</div><div class="sm-ring-sublbl">${Math.round(elapsed)}m</div>`
-                : `<div class="sm-ring-time ${tmCls}" id="timer-${id}">${fmtTime(elapsedMs)}</div><div class="sm-ring-sublbl ${isOver ? 'ot' : ''}">${sublbl_bl}</div>`
-              }
+              <div class="sm-ring-time ${tmCls}" id="timer-${id}">${displayTime}</div>
+              <div class="sm-ring-sublbl ${isOver ? 'ot' : ''}">${sublbl_bl}</div>
             </div>
           </div>
           <div class="sm-card-body">
             <div class="card-name">${s.name}</div>
-            <div class="card-type"><span class="bl-type-badge ${BREAK_TYPE_CLASS[s.type] || 'type-other'}">${s.type}</span></div>
-            <div class="card-badge ${isOver ? 'ot' : 'ok'}">${s.shift !== 'Staff' ? s.shift + ' · ' : ''}Max ${s.max}m</div>
+            <div class="card-type">${s.type} · ${s.max >= 9999 ? 'No limit' : s.max + ' min allowed'}</div>
+            <div class="card-badge ${isOver ? 'ot' : 'ok'}">${isOver ? 'OVERTIME' : s.type.toUpperCase()}</div>
           </div>
         </div>
       </div>`;
@@ -4956,8 +5145,15 @@ function startBlTick() {
         return;
       }
 
-      // Update timer text
-      el.textContent = fmtTime(elapsed);
+      // Update timer text - HH:MM when overtime, MM:SS otherwise
+      if (isOver) {
+        const otMs = elapsed - s.max * 60000;
+        const otH = Math.floor(otMs / 3600000);
+        const otM = Math.floor((otMs % 3600000) / 60000);
+        el.textContent = '+' + (otH > 0 ? otH + ':' : '') + String(otM).padStart(2, '0');
+      } else {
+        el.textContent = fmtTime(elapsed);
+      }
       el.className = 'sm-ring-time' + (isOver ? ' over ot' : isWarn ? ' warn' : ' ok');
 
       // Update ring SVG
@@ -5670,10 +5866,10 @@ function syncMobileNav(p) {
   var mhTitle = document.querySelector('.mobile-header-title');
   if (mhTitle && titles[p]) mhTitle.innerHTML = titles[p]+'<small>AttendanceHub</small>';
   // Sync sidebar active item
-  ['nav-daily','nav-overview','nav-breaklogs','nav-agentrecords','nav-editschedule'].forEach(function(id){
+  ['nav-daily','nav-overview','nav-breaklogs','nav-agentrecords','nav-editschedule','nav-leaverequest','nav-leaveapproval'].forEach(function(id){
     var el=document.getElementById(id); if(el) el.classList.remove('active');
   });
-  var navMap = { 'daily':'nav-daily','overview':'nav-overview','breaklogs':'nav-breaklogs','agentrecords':'nav-agentrecords','editschedule':'nav-editschedule' };
+  var navMap = { 'daily':'nav-daily','overview':'nav-overview','breaklogs':'nav-breaklogs','agentrecords':'nav-agentrecords','editschedule':'nav-editschedule','leaverequest':'nav-leaverequest','leaveapproval':'nav-leaveapproval' };
   var navTarget = document.getElementById(navMap[p]);
   if (navTarget) navTarget.classList.add('active');
 }
@@ -5878,8 +6074,8 @@ window.showPage = function(p) {
   }
 
   window.smPopOut = function() {
-    const pw = Math.min(window.screen.width, 900);
-    const ph = Math.min(window.screen.height, 960);
+    const pw = Math.min(window.screen.width, 1200);
+    const ph = Math.min(window.screen.height, 1080);
     const pl = Math.round((window.screen.width  - pw) / 2);
     const pt = Math.round((window.screen.height - ph) / 2);
     const popup = window.open('', 'BreakMonitorPopup',
@@ -5924,8 +6120,8 @@ body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-seri
 .live-txt{font-size:11px;font-weight:700;color:#dc2626;letter-spacing:0.05em}
 .tb-right{text-align:right}
 .tb-counts{display:flex;gap:14px;justify-content:flex-end;margin-bottom:3px}
-.cnt-on{font-size:13px;font-weight:700;color:#F59E0B}
-.cnt-ot{font-size:13px;font-weight:700;color:#ef4444}
+.cnt-on{font-size:15px;font-weight:700;color:#F59E0B}
+.cnt-ot{font-size:15px;font-weight:700;color:#ef4444}
 .tb-updated{font-size:10.5px;color:#B08040;font-family:'DM Mono',monospace}
 
 /* ── SHIFT SUMMARY ROW ── */
@@ -5939,40 +6135,40 @@ body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-seri
 .shift-icon{font-size:30px;opacity:0.35}
 
 /* ── LAYOUT: 2-COLUMN ── */
-.main-grid{display:grid;grid-template-columns:1fr 340px;gap:14px;align-items:start}
+.main-grid{display:grid;grid-template-columns:1fr 380px;gap:14px;align-items:start}
 
 /* ── SECTION HEADER ── */
 .sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1.5px solid #FFE0A3}
-.sec-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#1A0F00}
-.sec-badge{background:#E67E00;color:#fff;font-size:11px;font-weight:700;padding:2px 9px;border-radius:10px;min-width:22px;text-align:center}
+.sec-title{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;color:#1A0F00}
+.sec-badge{background:#E67E00;color:#fff;font-size:13px;font-weight:700;padding:3px 12px;border-radius:10px;min-width:22px;text-align:center}
 .sec-badge.red{background:#dc2626}
 .sec-badge.green{background:#059669}
 .sec-meta{font-size:11.5px;color:#B08040;font-weight:500}
 
 /* ── PREMIUM 3D ACTIVE BREAK CARDS ── */
 .cards-wrap{background:transparent;border-radius:14px;border:none;overflow:visible;box-shadow:none}
-#cards{padding:12px 14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+#cards{padding:14px 16px;display:flex;flex-direction:column;gap:10px}
 .sm-card{
-  border-radius:20px;border:none;
+  border-radius:16px;border:none;
   padding:0;position:relative;
   display:flex;flex-direction:column;align-items:stretch;
-  transition:transform 0.25s cubic-bezier(.4,0,.2,1),box-shadow 0.25s;
+  transition:transform 0.18s ease,box-shadow 0.18s ease;
   background:transparent;
   box-shadow:none;
+  min-width:0;
 }
-.sm-card:hover{transform:translateY(-4px) scale(1.02)}
+.sm-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(230,126,0,0.15)}
 .sm-card-inner{
-  border-radius:20px;
-  padding:20px 14px 16px;
-  display:flex;flex-direction:column;align-items:center;gap:12px;
+  border-radius:16px;
+  padding:16px 20px;
+  display:flex;flex-direction:row;align-items:center;gap:20px;
   position:relative;overflow:hidden;
-  background:linear-gradient(160deg,#FFFDF7 0%,#FFF5DC 100%);
+  background:linear-gradient(135deg,#FFFDF7 0%,#FFF5DC 100%);
   border:1.5px solid rgba(255,210,110,0.55);
   box-shadow:
     0 1px 0 rgba(255,255,255,0.95) inset,
     0 2px 4px rgba(230,126,0,0.06),
-    0 8px 28px rgba(230,126,0,0.12),
-    0 16px 40px rgba(230,126,0,0.06);
+    0 4px 16px rgba(230,126,0,0.08);
 }
 .sm-card-inner::before{
   content:'';position:absolute;top:0;left:15%;right:15%;height:1px;
@@ -5997,7 +6193,7 @@ body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-seri
 .sm-card.sm-type-others .sm-card-inner{border-color:rgba(16,185,129,0.38)}
 
 /* 3D Ring */
-.sm-ring-wrap{position:relative;width:90px;height:90px;filter:drop-shadow(0 5px 12px rgba(0,0,0,0.14))}
+.sm-ring-wrap{position:relative;width:90px;height:90px;flex-shrink:0;filter:drop-shadow(0 3px 8px rgba(0,0,0,0.13))}
 .sm-ring-svg{width:90px;height:90px}
 .sm-ring-center{
   position:absolute;inset:0;display:flex;flex-direction:column;
@@ -6006,20 +6202,20 @@ body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-seri
   box-shadow:0 2px 10px rgba(0,0,0,0.09),0 1px 0 rgba(255,255,255,1) inset;
 }
 .sm-ring-time{
-  font-size:13px;font-weight:800;letter-spacing:-0.03em;
+  font-size:14px;font-weight:800;letter-spacing:-0.03em;
   font-variant-numeric:tabular-nums;line-height:1;
   font-family:'DM Sans',sans-serif;
 }
 .sm-ring-time.ot{color:#dc2626}
 .sm-ring-time.ok{color:#1A0F00}
-.sm-ring-sublbl{font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-top:2px;color:#B08040}
+.sm-ring-sublbl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-top:2px;color:#B08040}
 .sm-ring-sublbl.ot{color:#dc2626}
 
 /* Card body */
-.sm-card-body{width:100%;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center}
-.card-name{font-size:12.5px;font-weight:700;color:#1A0F00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;text-align:center}
-.card-type{font-size:10px;color:#8A5C20;font-weight:500;text-align:center}
-.card-badge{margin-top:4px;display:inline-block;font-size:9.5px;font-weight:700;padding:2px 9px;border-radius:5px;letter-spacing:0.05em;text-transform:uppercase}
+.sm-card-body{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;min-width:0}
+.card-name{font-size:17px;font-weight:700;color:#1A0F00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;text-align:left}
+.card-type{font-size:13px;color:#8A5C20;font-weight:500;text-align:left;white-space:nowrap}
+.card-badge{margin-top:4px;display:inline-block;font-size:13px;font-weight:700;padding:4px 14px;border-radius:5px;letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap}
 .card-badge.ot{background:#FEF2F2;color:#DC2626;border:1px solid rgba(220,38,38,0.18)}
 .card-badge.ok{background:#ECFDF5;color:#065F46;border:1px solid rgba(5,150,105,0.18)}
 .card-badge.others{background:#f0fdf4;color:#065f46;border:1px solid rgba(16,185,129,0.2)}
@@ -6066,9 +6262,9 @@ body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-seri
 .ob-item:last-child{border-bottom:none}
 .ob-av{width:36px;height:36px;border-radius:50%;background:#FEE2E2;color:#DC2626;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
 .ob-info{flex:1;min-width:0}
-.ob-name{font-size:13px;font-weight:700;color:#1A0F00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ob-meta{font-size:11px;color:#B08040;margin-top:2px}
-.ob-over{font-size:14px;font-weight:700;color:#dc2626;white-space:nowrap;font-family:'DM Mono',monospace}
+.ob-name{font-size:15px;font-weight:700;color:#1A0F00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ob-meta{font-size:13px;color:#B08040;margin-top:2px}
+.ob-over{font-size:17px;font-weight:700;color:#dc2626;white-space:nowrap;font-family:'DM Mono',monospace}
 .ob-dismiss{width:26px;height:26px;border-radius:6px;border:1px solid #FECACA;background:#FFF1F2;color:#dc2626;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;transition:background 0.1s}
 .ob-dismiss:hover{background:#FEE2E2}
 .ob-empty{padding:20px;text-align:center;color:#B08040;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:6px}
@@ -6081,7 +6277,7 @@ body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-seri
 .aa-list-inner{padding:10px 12px;display:flex;flex-direction:column;gap:6px;max-height:320px;overflow-y:auto}
 .aa-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;border:1px solid #FFE0A3;background:#FFFDF7}
 .aa-shift-tag{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
-.aa-name{font-size:12.5px;font-weight:600;color:#1A0F00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.aa-name{font-size:14px;font-weight:600;color:#1A0F00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
 .aa-pos{font-size:10.5px;color:#8A5C20}
 .aa-dot{width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0}
 </style>
@@ -6283,7 +6479,11 @@ function render(data){
     const d=CIRC*pct, g=CIRC-d;
     const ring=isOT?"#EF4444":(pct>0.75?"#F59E0B":rc(b.type));
     const track=isOT?"#FEE2E2":"#F1F5F9";
-    const rl=noLimit?elapsed+"m":(isOT?"+"+(elapsed-b.allowed)+"m OT":remain+"m left");
+    const toHHMM=m=>{const am=Math.abs(Math.round(m));const h=Math.floor(am/60);const mn=am%60;return (h>0?h+":":"")+String(mn).padStart(2,"0");};
+    const otSecs=b.since_ts?Math.floor((now-new Date(b.since_ts).getTime())/1000):elapsed*60;
+    const remainSecs=b.allowed*60-otSecs;
+    const fmtSec=s=>{const as=Math.abs(s);const h=Math.floor(as/3600);const m=Math.floor((as%3600)/60);const sc=as%60;return (h>0?h+":":"")+String(m).padStart(2,"0")+":"+String(sc).padStart(2,"0");};
+    const rl=noLimit?"∞":(isOT?"+"+fmtSec(otSecs-b.allowed*60):fmtSec(remainSecs));
     const allowedLabel=noLimit?"No time limit":b.allowed+" min allowed";
     const sublbl = isOT ? 'OVER' : (pct > 0.75 ? 'SOON' : 'LIVE');
     return \`<div class="sm-card \${t}\${isOT?" sm-overtime":""}">
@@ -6295,10 +6495,8 @@ function render(data){
               stroke-dasharray="\${d} \${g}" stroke-linecap="round" transform="rotate(-90 45 45)"/>
           </svg>
           <div class="sm-ring-center">
-            \${noLimit
-              ? \`<div class="sm-ring-time ok" style="font-size:18px">∞</div><div class="sm-ring-sublbl">\${elapsed}m</div>\`
-              : \`<div class="sm-ring-time \${isOT?'ot':'ok'}">\${rl}</div><div class="sm-ring-sublbl \${isOT?'ot':''}">\${sublbl}</div>\`
-            }
+            <div class="sm-ring-time \${isOT?'ot':'ok'}">\${rl}</div>
+            <div class="sm-ring-sublbl \${isOT?'ot':''}">\${sublbl}</div>
           </div>
         </div>
         <div class="sm-card-body">
@@ -6334,7 +6532,7 @@ function renderOB(now){
         <div class="ob-name">\${esc(b.name)}</div>
         <div class="ob-meta">\${esc(b.type)} · \${maxLabel}</div>
       </div>
-      <div class="ob-over">+\${overBy}m OVER</div>
+      <div class="ob-over">+\${(()=>{const am=Math.abs(Math.round(overBy));const h=Math.floor(am/60);const mn=am%60;return (h>0?h+":":"")+String(mn).padStart(2,"0");})()}  OVER</div>
       <button class="ob-dismiss" onclick="dismiss('\${b.name.replace(/'/g,"\\\\'")}')"><i class="ti ti-x"></i></button>
     </div>\`;
   }).join("");
@@ -6860,10 +7058,17 @@ function _getToken() {
 
 /** Persists a session after successful login. */
 function _saveSession(data) {
-  sessionStorage.setItem('ah_token',   data.token);
-  sessionStorage.setItem('ah_role',    data.role);
-  sessionStorage.setItem('ah_display', data.display_name);
-  currentUser = { username: data.username || '', role: data.role, display: data.display_name, token: data.token };
+  sessionStorage.setItem('ah_token',    data.token);
+  sessionStorage.setItem('ah_role',     data.role);
+  sessionStorage.setItem('ah_display',  data.display_name);
+  sessionStorage.setItem('ah_username', data.username || '');
+  currentUser = {
+    username:     data.username || '',
+    role:         data.role,
+    display:      data.display_name,
+    display_name: data.display_name,
+    token:        data.token
+  };
 }
 
 /** Clears the stored session. */
@@ -6871,6 +7076,7 @@ function _clearSession() {
   sessionStorage.removeItem('ah_token');
   sessionStorage.removeItem('ah_role');
   sessionStorage.removeItem('ah_display');
+  sessionStorage.removeItem('ah_username');
   currentUser = null;
 }
 
@@ -6953,11 +7159,12 @@ async function doLogout() {
 
 // Restore prior session from sessionStorage on page load
 (function _restoreSession() {
-  const token   = sessionStorage.getItem('ah_token');
-  const role    = sessionStorage.getItem('ah_role');
-  const display = sessionStorage.getItem('ah_display');
+  const token    = sessionStorage.getItem('ah_token');
+  const role     = sessionStorage.getItem('ah_role');
+  const display  = sessionStorage.getItem('ah_display');
+  const username = sessionStorage.getItem('ah_username') || '';
   if (token && role && display) {
-    currentUser = { role, display, token };
+    currentUser = { username, role, display, display_name: display, token };
     _applyUser(role, display, true);
     setTimeout(fetchRosterFromSheet, 500); // reload roster with valid token
   }
@@ -6966,13 +7173,349 @@ async function doLogout() {
 // Guard: patch into existing showPage chain without re-wrapping
 const _authOrigShowPage = window.showPage;
 window.showPage = function(p) {
-  const opsPages = ['daily','editschedule','info'];
+  const opsPages = ['daily','editschedule','info','leaveapproval'];
   if (currentUser && currentUser.role === 'agent' && opsPages.includes(p)) {
     showToast('⚠ Access restricted — Admin only');
     return;
   }
   if (typeof _authOrigShowPage === 'function') _authOrigShowPage(p);
+  // Trigger data load on nav
+  if (p === 'leaverequest')  { lrInit(); lrLoadMyRequests(); }
+  if (p === 'leaveapproval') { laLoad(); }
 };
+
+// ════════════════════════════════════════════════════
+//  LEAVE REQUEST & APPROVAL SYSTEM
+// ════════════════════════════════════════════════════
+
+const GAS_URL_LEAVE = typeof gasUrl !== 'undefined' ? gasUrl : '';
+
+// ── Helpers ──
+function lrFmtDate(iso) {
+  if (!iso) return '—';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-PH', { year:'numeric', month:'short', day:'numeric' });
+  } catch(e) { return iso; }
+}
+function lrStatusBadge(s) {
+  const map = {
+    Pending:  '<span class="lr-status-badge lr-status-pending">⏳ Pending</span>',
+    Approved: '<span class="lr-status-badge lr-status-approved">✅ Approved</span>',
+    Rejected: '<span class="lr-status-badge lr-status-rejected">❌ Rejected</span>',
+  };
+  return map[s] || `<span class="lr-status-badge lr-status-pending">${s}</span>`;
+}
+
+// ── Leave Request (Agent side) ──
+let lrSelectedDates = [];
+
+function lrInit() {
+  // Pre-fill agent name + today's date from logged-in session
+  const nameEl = document.getElementById('lr-agent-name');
+  const dateEl = document.getElementById('lr-date-of-request');
+  const idEl   = document.getElementById('lr-agent-id');
+  if (nameEl && currentUser) {
+    nameEl.value = currentUser.display_name || currentUser.display || currentUser.username || '';
+  }
+  if (idEl && currentUser) {
+    idEl.value = currentUser.username || '';
+  }
+  const idDisplayEl = document.getElementById('lr-agent-id-display');
+  if (idDisplayEl && currentUser) {
+    idDisplayEl.textContent = currentUser.username || '—';
+  }
+  if (dateEl) dateEl.value = new Date().toLocaleDateString('en-PH', { year:'numeric', month:'long', day:'numeric' });
+  // Set topbar date
+  const tb = document.getElementById('lr-topbar-date');
+  if (tb) tb.textContent = new Date().toLocaleDateString('en-PH', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  // Reset calendar to current month and render
+  lrCalYear  = new Date().getFullYear();
+  lrCalMonth = new Date().getMonth();
+  lrSelectedDates = [];
+  lrCalRender();
+  lrRenderDateTags();
+}
+
+// ── Multi-date calendar picker ──
+let lrCalYear  = new Date().getFullYear();
+let lrCalMonth = new Date().getMonth(); // 0-indexed
+
+function lrCalRender() {
+  const titleEl = document.getElementById('lr-cal-title');
+  const gridEl  = document.getElementById('lr-cal-grid');
+  if (!titleEl || !gridEl) return;
+
+  const monthNames = ['January','February','March','April','May','June',
+                      'July','August','September','October','November','December'];
+  titleEl.textContent = monthNames[lrCalMonth] + ' ' + lrCalYear;
+
+  const firstDay  = new Date(lrCalYear, lrCalMonth, 1).getDay(); // 0=Sun
+  const daysInMo  = new Date(lrCalYear, lrCalMonth + 1, 0).getDate();
+  const today     = new Date(); today.setHours(0,0,0,0);
+
+  let html = '';
+  // Empty cells before first day
+  for (let i = 0; i < firstDay; i++) {
+    html += '<div></div>';
+  }
+  for (let d = 1; d <= daysInMo; d++) {
+    const iso    = lrCalYear + '-' + String(lrCalMonth+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+    const dt     = new Date(lrCalYear, lrCalMonth, d);
+    const isSelected = lrSelectedDates.includes(iso);
+    const isToday    = dt.getTime() === today.getTime();
+    const isPast     = dt < today;
+
+    let style = 'width:100%;aspect-ratio:1;border-radius:6px;border:none;cursor:pointer;font-size:12px;font-weight:600;transition:all 0.12s;display:flex;align-items:center;justify-content:center;';
+    if (isSelected) {
+      style += 'background:var(--primary);color:#fff;box-shadow:0 2px 6px rgba(230,126,0,0.35);';
+    } else if (isPast) {
+      style += 'background:transparent;color:var(--text3);cursor:not-allowed;opacity:0.4;';
+    } else if (isToday) {
+      style += 'background:var(--primary-light);color:var(--primary);border:1.5px solid var(--primary);';
+    } else {
+      style += 'background:transparent;color:var(--text);';
+    }
+
+    const clickAttr = isPast ? '' : `onclick="lrCalToggle('${iso}')"`;
+    const hoverAttr = isPast ? '' : `onmouseover="if(!this.classList.contains('lr-cal-sel'))this.style.background='var(--primary-light)'" onmouseout="if(!this.classList.contains('lr-cal-sel'))this.style.background='transparent'"`;
+    html += `<button type="button" ${clickAttr} style="${style}" class="${isSelected?'lr-cal-sel':''}" title="${iso}">${d}</button>`;
+  }
+  gridEl.innerHTML = html;
+}
+
+function lrCalToggle(iso) {
+  const idx = lrSelectedDates.indexOf(iso);
+  if (idx === -1) {
+    lrSelectedDates.push(iso);
+  } else {
+    lrSelectedDates.splice(idx, 1);
+  }
+  lrSelectedDates.sort();
+  lrCalRender();
+  lrRenderDateTags();
+}
+
+function lrCalPrev() {
+  lrCalMonth--;
+  if (lrCalMonth < 0) { lrCalMonth = 11; lrCalYear--; }
+  lrCalRender();
+}
+
+function lrCalNext() {
+  lrCalMonth++;
+  if (lrCalMonth > 11) { lrCalMonth = 0; lrCalYear++; }
+  lrCalRender();
+}
+
+function lrRemoveDate(d) {
+  lrSelectedDates = lrSelectedDates.filter(x => x !== d);
+  lrCalRender();
+  lrRenderDateTags();
+}
+
+function lrRenderDateTags() {
+  const wrap  = document.getElementById('lr-date-tags');
+  const label = document.getElementById('lr-date-count-label');
+  if (!wrap) return;
+  if (label) {
+    label.textContent = lrSelectedDates.length === 0
+      ? 'No dates selected — click dates on the calendar above'
+      : lrSelectedDates.length + ' date(s) selected:';
+  }
+  wrap.innerHTML = lrSelectedDates.map(d =>
+    `<span class="lr-date-tag">${lrFmtDate(d)}<button type="button" onclick="lrRemoveDate('${d}')" title="Remove">×</button></span>`
+  ).join('');
+}
+
+async function lrSubmit() {
+  const name    = (document.getElementById('lr-agent-name')?.value || '').trim();
+  const reason  = (document.getElementById('lr-reason')?.value || '').trim();
+  if (!name)                       { showToast('⚠ Agent name is required.'); return; }
+  if (lrSelectedDates.length === 0){ showToast('⚠ Add at least one leave date.'); return; }
+  if (!reason)                     { showToast('⚠ Please enter a reason.'); return; }
+
+  const payload = {
+    action:        'submitLeaveRequest',
+    token:         currentUser?.token || '',
+    agentId:       currentUser?.username || '',
+    agentName:     name,
+    dates:         lrSelectedDates,
+    reason:        reason,
+    dateOfRequest: new Date().toISOString(),
+  };
+
+  try {
+    showToast('Submitting...');
+    const res = await fetch(GAS_URL_LEAVE, { method:'POST', body: JSON.stringify(payload) });
+    const data = await res.json();
+    if (data.ok) {
+      showToast('✅ Leave request submitted!');
+      lrSelectedDates = [];
+      lrCalRender();
+      lrRenderDateTags();
+      document.getElementById('lr-reason').value = '';
+      lrLoadMyRequests();
+    } else {
+      showToast('❌ ' + (data.error || 'Submission failed'));
+    }
+  } catch(e) {
+    showToast('❌ Network error. Please try again.');
+  }
+}
+
+async function lrLoadMyRequests() {
+  const tbody = document.getElementById('lr-my-list');
+  if (!tbody) return;
+  tbody.innerHTML = '<tr><td colspan="4" style="padding:28px;text-align:center;color:var(--text3);font-size:12px"><i class="ti ti-loader"></i> Loading...</td></tr>';
+
+  try {
+    const agentFilterId = currentUser?.username || '';
+    const agentFilterName = currentUser?.display_name || currentUser?.display || '';
+    const url = GAS_URL_LEAVE + '?action=getLeaveRequests&token=' + encodeURIComponent(currentUser?.token||'') + '&agentId=' + encodeURIComponent(agentFilterId) + '&agentName=' + encodeURIComponent(agentFilterName);
+    const res  = await fetch(url);
+    const data = await res.json();
+
+    if (!data.ok || !data.requests?.length) {
+      tbody.innerHTML = '<tr><td colspan="4" style="padding:32px;text-align:center;color:var(--text3);font-size:12px;"><i class="ti ti-calendar-off" style="font-size:22px;display:block;margin:0 auto 6px;opacity:0.4"></i>No leave requests yet.</td></tr>';
+      return;
+    }
+
+    // Sort newest first
+    const rows = [...data.requests].sort((a,b) => new Date(b.dateOfRequest) - new Date(a.dateOfRequest));
+    tbody.innerHTML = rows.map(r => `
+      <tr style="border-top:1px solid var(--border);transition:background 0.12s" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background=''">
+        <td style="padding:10px 14px;white-space:nowrap;color:var(--text2)">${lrFmtDate(r.dateOfRequest)}</td>
+        <td style="padding:10px 14px">${(r.dates||[]).map(d=>`<span class="la-date-chip">${lrFmtDate(d)}</span>`).join('')}</td>
+        <td style="padding:10px 14px;color:var(--text2);max-width:220px">${r.reason || '—'}</td>
+        <td style="padding:10px 14px;text-align:center">${lrStatusBadge(r.status)}</td>
+      </tr>`).join('');
+  } catch(e) {
+    tbody.innerHTML = '<tr><td colspan="4" style="padding:28px;text-align:center;color:#DC2626;font-size:12px">❌ Failed to load requests. Check connection.</td></tr>';
+  }
+}
+
+// ── Leave Approval (Admin side) ──
+let laCurrentFilter = 'pending';
+let laAllRequests   = [];
+
+function laSetFilter(f) {
+  laCurrentFilter = f;
+  document.querySelectorAll('.la-tab').forEach(el => {
+    el.classList.toggle('active', el.dataset.filter === f);
+  });
+  laRender();
+}
+
+async function laLoad() {
+  const listEl = document.getElementById('la-list');
+  if (!listEl) return;
+  listEl.innerHTML = '<div style="padding:40px;text-align:center;color:var(--text3);font-size:12px"><i class="ti ti-loader" style="font-size:24px;display:block;margin:0 auto 8px"></i>Loading...</div>';
+
+  try {
+    const url  = GAS_URL_LEAVE + '?action=getLeaveRequests&token=' + encodeURIComponent(currentUser?.token||'') + '&all=1';
+    const res  = await fetch(url);
+    const data = await res.json();
+
+    laAllRequests = data.ok ? (data.requests || []) : [];
+    laAllRequests.sort((a,b) => new Date(b.dateOfRequest) - new Date(a.dateOfRequest));
+
+    // Update stats
+    const pending  = laAllRequests.filter(r => r.status === 'Pending').length;
+    const approved = laAllRequests.filter(r => r.status === 'Approved').length;
+    const rejected = laAllRequests.filter(r => r.status === 'Rejected').length;
+    document.getElementById('la-stat-pending').textContent  = pending;
+    document.getElementById('la-stat-approved').textContent = approved;
+    document.getElementById('la-stat-rejected').textContent = rejected;
+
+    laRender();
+  } catch(e) {
+    listEl.innerHTML = '<div style="padding:40px;text-align:center;color:#DC2626;font-size:13px">❌ Failed to load. Check connection.</div>';
+  }
+}
+
+function laRender() {
+  const listEl = document.getElementById('la-list');
+  if (!listEl) return;
+
+  const filtered = laCurrentFilter === 'all'
+    ? laAllRequests
+    : laAllRequests.filter(r => r.status.toLowerCase() === laCurrentFilter);
+
+  if (!filtered.length) {
+    listEl.innerHTML = `<div style="padding:48px;text-align:center;color:var(--text3);font-size:12px"><i class="ti ti-calendar-off" style="font-size:28px;display:block;margin:0 auto 8px;opacity:0.35"></i>No ${laCurrentFilter} requests.</div>`;
+    return;
+  }
+
+  listEl.innerHTML = filtered.map((r, i) => `
+    <div class="la-card status-${r.status.toLowerCase()}">
+      <div style="padding:14px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:10px;min-width:0">
+          <div style="width:38px;height:38px;border-radius:10px;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex-shrink:0;text-transform:uppercase">
+            ${(r.agentName||'?').charAt(0)}
+          </div>
+          <div style="min-width:0">
+            <div style="font-size:13.5px;font-weight:700;color:var(--text)">${r.agentName || '—'}</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:1px">Filed: ${lrFmtDate(r.dateOfRequest)}</div>
+          </div>
+        </div>
+        ${lrStatusBadge(r.status)}
+      </div>
+      <div style="padding:0 16px 14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px">Leave Date(s)</div>
+          <div>${(r.dates||[]).map(d=>`<span class="la-date-chip">${lrFmtDate(d)}</span>`).join('')}</div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px">Reason</div>
+          <div style="font-size:12.5px;color:var(--text2)">${r.reason || '—'}</div>
+        </div>
+      </div>
+      ${r.status === 'Pending' ? `
+      <div style="padding:10px 16px 14px;display:flex;gap:8px;border-top:1px solid var(--border)">
+        <button onclick="laAction('${r.id}','Approved')" style="flex:1;padding:8px;border-radius:var(--radius-sm);background:#059669;color:#fff;border:none;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:opacity 0.15s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          <i class="ti ti-check"></i> Approve
+        </button>
+        <button onclick="laAction('${r.id}','Rejected')" style="flex:1;padding:8px;border-radius:var(--radius-sm);background:#DC2626;color:#fff;border:none;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:opacity 0.15s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          <i class="ti ti-x"></i> Reject
+        </button>
+      </div>` : ''}
+    </div>`).join('');
+}
+
+async function laAction(id, newStatus) {
+  const req = laAllRequests.find(r => r.id === id);
+  if (!req) return;
+
+  const confirmMsg = newStatus === 'Approved'
+    ? `Approve leave for ${req.agentName} on ${(req.dates||[]).map(lrFmtDate).join(', ')}?`
+    : `Reject leave request from ${req.agentName}?`;
+
+  if (!confirm(confirmMsg)) return;
+
+  try {
+    showToast(newStatus === 'Approved' ? '✅ Approving...' : '❌ Rejecting...');
+    const res  = await fetch(GAS_URL_LEAVE, {
+      method: 'POST',
+      body: JSON.stringify({
+        action:    'updateLeaveStatus',
+        token:     currentUser?.token || '',
+        id:        id,
+        status:    newStatus,
+        approvedBy: currentUser?.display_name || 'Admin',
+      })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      showToast(newStatus === 'Approved' ? '✅ Leave Approved! Sheet updated.' : '❌ Leave Rejected.');
+      await laLoad();
+    } else {
+      showToast('Error: ' + (data.error || 'Unknown error'));
+    }
+  } catch(e) {
+    showToast('❌ Network error.');
+  }
+}
 
 </script>
 
