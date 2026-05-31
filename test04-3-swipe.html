@@ -746,7 +746,9 @@ body.dark-mode .sp-shift-select{background-color:#3A2200}
 
 /* ── Days Off Editor Modal ── */
 .doed-modal{width:98vw;max-width:1280px;max-height:92vh;padding:0;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-lg)}
-.doed-header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--surface);flex-wrap:wrap}
+.doed-header{display:flex;flex-direction:column;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--surface)}
+.doed-header-top{display:flex;align-items:center;gap:10px;flex-wrap:nowrap}
+.doed-header-bot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .doed-title{font-size:15px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
 .doed-body{flex:1;overflow:auto;padding:0}
 .doed-table{width:100%;border-collapse:collapse;font-size:12px}
@@ -3734,28 +3736,32 @@ body.dark-mode .bl-chart-card{background:linear-gradient(145deg,#221300,#2E1A00)
 <div class="modal-overlay" id="daysoff-modal">
   <div class="modal-box doed-modal">
     <div class="doed-header">
-      <div class="doed-title"><i class="ti ti-calendar-off" style="color:#7C3AED"></i> Days Off Editor</div>
-      <select class="ea-select" id="doed-month" onchange="renderDaysOffModal()">
-        <option value="1">January</option><option value="2">February</option><option value="3">March</option>
-        <option value="4">April</option><option value="5">May</option><option value="6" selected>June</option>
-        <option value="7">July</option><option value="8">August</option><option value="9">September</option>
-        <option value="10">October</option><option value="11">November</option><option value="12">December</option>
-      </select>
-      <select class="ea-select" id="doed-year" onchange="renderDaysOffModal()">
-        <option value="2025">2025</option><option value="2026" selected>2026</option><option value="2027">2027</option>
-      </select>
-      <div class="doed-legend">
-        <div class="doed-leg"><div class="doed-leg-swatch" style="background:#7C3AED;border-color:#6D28D9"></div> Day Off</div>
-        <div class="doed-leg"><div class="doed-leg-swatch" style="background:#d97706;border-color:#b45309"></div> Half Day</div>
-        <div class="doed-leg"><div class="doed-leg-swatch" style="background:#0891b2;border-color:#0e7490"></div> Vacation</div>
-        <div class="doed-leg"><div class="doed-leg-swatch" style="background:#6d28d9;border-color:#5b21b6"></div> Personal</div>
-        <div class="doed-leg"><div class="doed-leg-swatch" style="background:#f0fdf4;border-color:#bbf7d0"></div> Working</div>
-        <div class="doed-leg"><div class="doed-leg-swatch" style="background:#F5F0E8;border-color:#E8DCC8"></div> Weekend</div>
+      <div class="doed-header-top">
+        <div class="doed-title"><i class="ti ti-calendar-off" style="color:#7C3AED"></i> Days Off Editor</div>
+        <select class="ea-select" id="doed-month" onchange="renderDaysOffModal()">
+          <option value="1">January</option><option value="2">February</option><option value="3">March</option>
+          <option value="4">April</option><option value="5">May</option><option value="6" selected>June</option>
+          <option value="7">July</option><option value="8">August</option><option value="9">September</option>
+          <option value="10">October</option><option value="11">November</option><option value="12">December</option>
+        </select>
+        <select class="ea-select" id="doed-year" onchange="renderDaysOffModal()">
+          <option value="2025">2025</option><option value="2026" selected>2026</option><option value="2027">2027</option>
+        </select>
+        <button class="modal-close" style="position:static;margin-left:8px" onclick="closeDaysOffModal()"><i class="ti ti-x"></i></button>
       </div>
-      <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
-        <button class="ea-confirm-btn" onclick="clearAllDaysOff()" style="background:#DC2626;margin-right:4px"><i class="ti ti-eraser"></i> Clear All Days Off</button>
-        <button class="ea-confirm-btn" onclick="saveDaysOff()" style="background:#7C3AED"><i class="ti ti-device-floppy"></i> Save Days Off</button>
-        <button class="modal-close" style="position:static" onclick="closeDaysOffModal()"><i class="ti ti-x"></i></button>
+      <div class="doed-header-bot">
+        <div class="doed-legend">
+          <div class="doed-leg"><div class="doed-leg-swatch" style="background:#7C3AED;border-color:#6D28D9"></div> Day Off</div>
+          <div class="doed-leg"><div class="doed-leg-swatch" style="background:#d97706;border-color:#b45309"></div> Half Day</div>
+          <div class="doed-leg"><div class="doed-leg-swatch" style="background:#0891b2;border-color:#0e7490"></div> Vacation</div>
+          <div class="doed-leg"><div class="doed-leg-swatch" style="background:#6d28d9;border-color:#5b21b6"></div> Personal</div>
+          <div class="doed-leg"><div class="doed-leg-swatch" style="background:#f0fdf4;border-color:#bbf7d0"></div> Working</div>
+          <div class="doed-leg"><div class="doed-leg-swatch" style="background:#F5F0E8;border-color:#E8DCC8"></div> Weekend</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;margin-left:auto">
+          <button class="ea-confirm-btn" onclick="clearAllDaysOff()" style="background:#DC2626"><i class="ti ti-eraser"></i> Clear All Days Off</button>
+          <button class="ea-confirm-btn" onclick="saveDaysOff()" style="background:#7C3AED"><i class="ti ti-device-floppy"></i> Save Days Off</button>
+        </div>
       </div>
     </div>
     <div class="doed-body">
