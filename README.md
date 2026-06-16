@@ -71,3 +71,4 @@ Open the deployed GitHub Pages URL on your phone browser → tap **Add to Home S
 |---------|-------|
 | v6.1 | GitHub Pages setup, PWA support, config block, version badge |
 | v6.0 | Ultra-premium SaaS redesign (Linear/Stripe/Apple Vision Pro inspired) |
+ 
